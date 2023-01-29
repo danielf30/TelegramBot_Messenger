@@ -1,0 +1,6 @@
+asyncio==3.4.3
+beautifulsoup4==4.9.3
+requests==2.25.0
+azure-functions==1.13.0b1
+azure-functions-worker==1.1.9
+python-telegram-bot==20.0
