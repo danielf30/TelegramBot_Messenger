@@ -6,15 +6,20 @@ import asyncio
 import random
 import os
 import azure.functions as func
+import pytz
 
 num_messages_morning = 1
 num_messages_night = 1
 
-secret_value = os.environ.get('token_bot')
-bot_token = telegram.Bot(token=secret_value)
-secrets = {'chatbot_id1': os.environ.get('chatbot_id1'), 'chatbot_id2': os.environ.get('chatbot_id2')}
-secret_value1, secret_value2 = secrets.values()
-chat_ids = [secret_value1,secret_value2]
+#secret_value = os.environ.get('token_bot')
+#bot_token = telegram.Bot(token=secret_value)
+#secrets = {'chatbot_id1': os.environ.get('chatbot_id1'), 'chatbot_id2': os.environ.get('chatbot_id2')}
+#secret_value1, secret_value2 = secrets.values()
+#chat_ids = [secret_value1,secret_value2]
+
+bot_token = telegram.Bot(token='5743813753:AAFuPL5KTJeOZLC1UpL5CCn2Ggv-hZbZSi4')
+#updates = await bot_token.get_updates()
+chat_ids = [919917985]#747861357
 
 async def send_morning_messages(chat_ids, bot):
     url = 'https://www.wishesmsg.com/good-morning-messages-for-girlfriend/'
@@ -40,7 +45,8 @@ async def send_night_messages(chat_ids, bot):
 
 async def main(mytimer: func.TimerRequest) -> None:
     current_time = datetime.now().time()
-    if current_time > time(11, 58, 0) and current_time < time(12, 2, 0):
-        asyncio.gather(asyncio.create_task(send_morning_messages(chat_ids, bot_token)))
-    elif current_time > time(0, 58, 0) and current_time < time(1, 2, 0):
-        asyncio.gather(asyncio.create_task(send_night_messages(chat_ids, bot_token)))
+    print(current_time)
+    if current_time >= time(11, 58, 0) and current_time <= time(12, 2, 0):
+        await send_morning_messages(chat_ids, bot_token)
+    if current_time >= time(0, 58, 0) and current_time <= time(1, 2, 0):
+        await send_night_messages(chat_ids, bot_token)

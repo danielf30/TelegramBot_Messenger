@@ -4,3 +4,4 @@ requests==2.25.0
 azure-functions==1.13.0b1
 azure-functions-worker==1.1.9
 python-telegram-bot==20.0
+pytz==2021.3

@@ -12,6 +12,6 @@
     "id": "Microsoft.Azure.Functions.ExtensionBundle",
     "version": "[3.*, 4.0.0)"
   },
-  "scriptRoot": "send-messages-timertrigger",
+  "env.scriptRoot": "send-messages-timertrigger",
   "entryPoint": "__init__.main"
 }
