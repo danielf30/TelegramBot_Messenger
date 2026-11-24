@@ -1,0 +1,27 @@
+# Project metadata for local validation and tests. The Azure Functions host still
+# installs requirements.txt; keep both dependency lists in step.
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "telegram-bot-messenger"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "requests==2.25.0",
+    "beautifulsoup4==4.9.3",
+    "python-telegram-bot==20.0",
+    "azure-functions==1.13.0b1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools]
+# Nothing to package: the function folder is loaded by the Functions host, and the
+# tests load it by path.
+py-modules = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

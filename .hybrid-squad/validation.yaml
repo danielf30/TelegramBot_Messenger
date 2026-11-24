@@ -1,0 +1,19 @@
+# How hybrid-squad-runner validates a proposed change before opening a draft PR.
+# Declarative only: the runner owns the commands (ruff, pytest) and their versions.
+version: 1
+profiles:
+  orchestration:
+    - adapter: python
+      project: .
+      source: send-messages-timertrigger
+      tests: tests
+      # typecheck is left out: mypy cannot check a folder whose name has hyphens,
+      # which is the name the Azure Functions host uses for this function.
+      checks: [format, lint, unit]
+      verification_paths: ["tests/**"]
+      test_mappings:
+        - production_path: send-messages-timertrigger/__init__.py
+          test_targets:
+            - tests/test_send_messages.py::test_send_morning_messages_sends_to_every_chat
+            - tests/test_send_messages.py::test_send_night_messages_sends_to_every_chat
+            - tests/test_send_messages.py::test_main_sends_nothing_outside_the_windows

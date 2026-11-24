@@ -1,0 +1,18 @@
+# Hybrid squad profile for this repository (read by hybrid-squad-runner).
+# It can only narrow the runner's central ceilings, never widen them.
+version: 1
+roles:
+  # Pilot flow: Product Manager refines, Scrum Master delegates, Orchestration codes.
+  # Roles not listed here are disabled for this repository.
+  product_manager: {}
+  scrum_master: {}
+  orchestration:
+    allowed_paths:
+      - send-messages-timertrigger/**
+      - requirements.txt
+      - pyproject.toml
+    verification_paths:
+      - tests/**
+# This repository keeps no architecture-decision, requirement, test-case or interface
+# documents, so a ready story does not have to cite AD/TR/TC/ID references.
+traceability: []
